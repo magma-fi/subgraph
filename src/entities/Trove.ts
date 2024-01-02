@@ -173,6 +173,7 @@ export function setBorrowingFeeOfLastTroveChange(_LUSDFee: BigInt): void {
   let lastChangeSequenceNumber = getLastChangeSequenceNumber();
 
   let lastTroveChange = TroveChange.load(lastChangeSequenceNumber.toString());
+  if (lastTroveChange === null) return;
   lastTroveChange.borrowingFee = decimalize(_LUSDFee);
   lastTroveChange.save();
 }

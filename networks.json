@@ -1,0 +1,54 @@
+{
+    "iotex": {
+        "TroveManager": {
+            "address": "0xAeB0B38040aDdc4a2b520919f13944D9bC944435",
+            "startBlock": 27335639
+        },
+        "BorrowerOperations": {
+            "address": "0x51729FC7f777b29ffCd40fD4ccC699BC2e023826",
+            "startBlock": 27335659
+        },
+        "PriceFeed": {
+            "address": "0xCfE22Ea152e364Fa4261D1F9bECe83171397718d",
+            "startBlock": 27232730
+        },
+        "StabilityPool": {
+            "address": "0x109e342FE7132585abFa785887E2c05c85Fbcf71",
+            "startBlock": 27335647
+        },
+        "CollSurplusPool": {
+            "address": "0x6AdD3E2edA80bc5070052feEb651973cb44fa7B2",
+            "startBlock": 27335653
+        },
+        "LUSDToken": {
+            "address": "0x20143C45c2Ce7984799079F256d8a68A918EeEe6",
+            "startBlock": 27390790
+        }
+    },
+    "iotex-testnet": {
+        "TroveManager": {
+            "address": "0x0571B9C4ee4887e7d84E55a2dD92E97872437f74",
+            "startBlock": 23406026
+        },
+        "BorrowerOperations": {
+            "address": "0xB356333cB452712eec5dC42b877d9E84Ff7227Ec",
+            "startBlock": 23406047
+        },
+        "PriceFeed": {
+            "address": "0x745a12D9BcDBFfb092fc38C1A24531dbb0846ad8",
+            "startBlock": 23406020
+        },
+        "StabilityPool": {
+            "address": "0x9eb189Be49a8a9e7b83e0A67a6207b08F58Ca228",
+            "startBlock": 23406034
+        },
+        "CollSurplusPool": {
+            "address": "0x132d8eEAc82b7b5A650A04ce996833d2c76272F8",
+            "startBlock": 23406041
+        },
+        "LUSDToken": {
+            "address": "0xcb9177F585314B7e60A2Cd54AD0aA0d87b4817Be",
+            "startBlock": 23406051
+        }
+    }
+}

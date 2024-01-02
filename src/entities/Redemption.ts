@@ -10,7 +10,12 @@ import { getUser } from "./User";
 
 export function getCurrentRedemption(event: ethereum.Event): Redemption {
   let currentRedemptionId = getGlobal().currentRedemption;
-  let currentRedemptionOrNull = Redemption.load(currentRedemptionId);
+  let redemptionId = "";
+  if (currentRedemptionId !== null) {
+    redemptionId = currentRedemptionId;
+  }
+
+  let currentRedemptionOrNull = Redemption.load(redemptionId);
 
   if (currentRedemptionOrNull == null) {
     let sequenceNumber = getRedemptionSequenceNumber();

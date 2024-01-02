@@ -1,35 +1,22 @@
-const fs = require("fs");
-
-const network = process.argv[2] || "mainnet";
-const { addresses, startBlock } = require(`@liquity/lib-ethers/deployments/${network}.json`);
-
-console.log(`Preparing subgraph manifest for network "${network}"`);
-
-const yaml = (strings, ...keys) =>
-  strings
-    .flatMap((string, i) => [string, Array.isArray(keys[i]) ? keys[i].join("") : keys[i]])
-    .join("")
-    .substring(1); // Skip initial newline
-
-const manifest = yaml`
-specVersion: 0.0.2
-description: Liquity is a decentralized borrowing protocol offering interest-free liquidity against collateral in Ether.
-repository: https://github.com/liquity/dev/tree/main/packages/subgraph
+specVersion: 0.0.4
+description: Magma is a decentralized borrowing protocol offering interest-free
+  liquidity against collateral in Ether.
+repository: https://github.com/magma-fi/subgraph
 schema:
   file: ./schema.graphql
 dataSources:
   - name: TroveManager
     kind: ethereum/contract
-    network: mainnet
+    network: iotex
     source:
       abi: TroveManager
-      address: "${addresses.troveManager}"
-      startBlock: ${startBlock}
+      address: "0xAeB0B38040aDdc4a2b520919f13944D9bC944435"
+      startBlock: 27335639
     mapping:
       file: ./src/mappings/TroveManager.ts
       language: wasm/assemblyscript
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       entities:
         - Global
         - User
@@ -41,7 +28,7 @@ dataSources:
         - SystemState
       abis:
         - name: TroveManager
-          file: ../lib-ethers/abi/TroveManager.json
+          file: ./abi/TroveManager.json
       eventHandlers:
         - event: TroveUpdated(indexed address,uint256,uint256,uint256,uint8)
           handler: handleTroveUpdated
@@ -55,16 +42,16 @@ dataSources:
           handler: handleLTermsUpdated
   - name: BorrowerOperations
     kind: ethereum/contract
-    network: mainnet
+    network: iotex
     source:
       abi: BorrowerOperations
-      address: "${addresses.borrowerOperations}"
-      startBlock: ${startBlock}
+      address: "0x51729FC7f777b29ffCd40fD4ccC699BC2e023826"
+      startBlock: 27335659
     mapping:
       file: ./src/mappings/BorrowerOperations.ts
       language: wasm/assemblyscript
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       entities:
         - Global
         - User
@@ -74,7 +61,7 @@ dataSources:
         - SystemState
       abis:
         - name: BorrowerOperations
-          file: ../lib-ethers/abi/BorrowerOperations.json
+          file: ./abi/BorrowerOperations.json
       eventHandlers:
         - event: TroveUpdated(indexed address,uint256,uint256,uint256,uint8)
           handler: handleTroveUpdated
@@ -82,16 +69,16 @@ dataSources:
           handler: handleLUSDBorrowingFeePaid
   - name: PriceFeed
     kind: ethereum/contract
-    network: mainnet
+    network: iotex
     source:
       abi: PriceFeed
-      address: "${addresses.priceFeed}"
-      startBlock: ${startBlock}
+      address: "0xCfE22Ea152e364Fa4261D1F9bECe83171397718d"
+      startBlock: 27232730
     mapping:
       file: ./src/mappings/PriceFeed.ts
       language: wasm/assemblyscript
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       entities:
         - Global
         - Transaction
@@ -99,22 +86,22 @@ dataSources:
         - SystemState
       abis:
         - name: PriceFeed
-          file: ../lib-ethers/abi/PriceFeed.json
+          file: ./abi/PriceFeed.json
       eventHandlers:
         - event: LastGoodPriceUpdated(uint256)
           handler: handleLastGoodPriceUpdated
   - name: StabilityPool
     kind: ethereum/contract
-    network: mainnet
+    network: iotex
     source:
       abi: StabilityPool
-      address: "${addresses.stabilityPool}"
-      startBlock: ${startBlock}
+      address: "0x109e342FE7132585abFa785887E2c05c85Fbcf71"
+      startBlock: 27335647
     mapping:
       file: ./src/mappings/StabilityPool.ts
       language: wasm/assemblyscript
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       entities:
         - Global
         - User
@@ -125,7 +112,7 @@ dataSources:
         - Frontend
       abis:
         - name: StabilityPool
-          file: ../lib-ethers/abi/StabilityPool.json
+          file: ./abi/StabilityPool.json
       eventHandlers:
         - event: UserDepositChanged(indexed address,uint256)
           handler: handleUserDepositChanged
@@ -137,16 +124,16 @@ dataSources:
           handler: handleFrontendTagSet
   - name: CollSurplusPool
     kind: ethereum/contract
-    network: mainnet
+    network: iotex
     source:
       abi: CollSurplusPool
-      address: "${addresses.collSurplusPool}"
-      startBlock: ${startBlock}
+      address: "0x6AdD3E2edA80bc5070052feEb651973cb44fa7B2"
+      startBlock: 27335653
     mapping:
       file: ./src/mappings/CollSurplusPool.ts
       language: wasm/assemblyscript
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       entities:
         - Global
         - User
@@ -156,53 +143,22 @@ dataSources:
         - SystemState
       abis:
         - name: CollSurplusPool
-          file: ../lib-ethers/abi/CollSurplusPool.json
+          file: ./abi/CollSurplusPool.json
       eventHandlers:
         - event: CollBalanceUpdated(indexed address,uint256)
           handler: handleCollSurplusBalanceUpdated
-  - name: LQTYStaking
+  - name: LUSDToken
     kind: ethereum/contract
-    network: mainnet
-    source:
-      abi: LQTYStaking
-      address: "${addresses.lqtyStaking}"
-      startBlock: ${startBlock}
-    mapping:
-      file: ./src/mappings/LqtyStake.ts
-      language: wasm/assemblyscript
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      entities:
-        - Global
-        - User
-        - Transaction
-        - LqtyStake
-        - LqtyStakeChange
-      abis:
-        - name: LQTYStaking
-          file: ../lib-ethers/abi/LQTYStaking.json
-      eventHandlers:
-        - event: StakeChanged(indexed address,uint256)
-          handler: handleStakeChanged
-        - event: StakingGainsWithdrawn(indexed address,uint256,uint256)
-          handler: handleStakeGainsWithdrawn
-${[
-  ["LUSDToken", addresses.lusdToken],
-  ["LQTYToken", addresses.lqtyToken]
-].map(
-  ([name, address]) => yaml`
-  - name: ${name}
-    kind: ethereum/contract
-    network: mainnet
+    network: iotex
     source:
       abi: ERC20
-      address: "${address}"
-      startBlock: ${startBlock}
+      address: "0x20143C45c2Ce7984799079F256d8a68A918EeEe6"
+      startBlock: 27390790
     mapping:
       file: ./src/mappings/Token.ts
       language: wasm/assemblyscript
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       entities:
         - Global
         - User
@@ -216,7 +172,3 @@ ${[
           handler: handleTokenTransfer
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleTokenApproval
-`
-)}`;
-
-fs.writeFileSync("subgraph.yaml", manifest);

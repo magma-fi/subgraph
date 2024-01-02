@@ -10,7 +10,11 @@ import { getUser } from "./User";
 
 export function getCurrentLiquidation(event: ethereum.Event): Liquidation {
   let currentLiquidationId = getGlobal().currentLiquidation;
-  let currentLiquidationOrNull = Liquidation.load(currentLiquidationId);
+  let liquidationId = "";
+  if (currentLiquidationId !== null) {
+    liquidationId = currentLiquidationId;
+  }
+  let currentLiquidationOrNull = Liquidation.load(liquidationId);
 
   if (currentLiquidationOrNull == null) {
     let sequenceNumber = getLiquidationSequenceNumber();

@@ -38,7 +38,11 @@ export function getGlobal(): Global {
 function increaseCounter(key: string): i32 {
   let global = getGlobal();
 
-  let count = global.get(key).toI32();
+  let count = 0;
+  let temp = global.get(key);
+  if (temp !== null) {
+    count = temp.toI32();
+  }
   global.set(key, Value.fromI32(count + 1));
   global.save();
 

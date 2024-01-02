@@ -26,7 +26,7 @@ function swapTmpDepositUpdate(valueToSetIfNull: BigInt): BigInt | null {
   let global = getGlobal();
 
   let tmpDepositUpdate = global.tmpDepositUpdate;
-  global.tmpDepositUpdate = tmpDepositUpdate == null ? valueToSetIfNull : null;
+  global.tmpDepositUpdate = tmpDepositUpdate === null ? valueToSetIfNull : null;
   global.save();
 
   return tmpDepositUpdate;
@@ -35,7 +35,7 @@ function swapTmpDepositUpdate(valueToSetIfNull: BigInt): BigInt | null {
 export function handleUserDepositChanged(event: UserDepositChanged): void {
   let ethGainWithdrawn = swapTmpDepositUpdate(event.params._newDeposit);
 
-  if (ethGainWithdrawn != null) {
+  if (ethGainWithdrawn !== null) {
     updateStabilityDeposit(event, event.params._depositor, event.params._newDeposit);
   }
 }
@@ -52,7 +52,7 @@ export function handleETHGainWithdrawn(event: ETHGainWithdrawn): void {
     event.params._LUSDLoss
   );
 
-  if (depositUpdate != null) {
+  if (depositUpdate !== null) {
     updateStabilityDeposit(event, event.params._depositor, depositUpdate as BigInt);
   }
 }

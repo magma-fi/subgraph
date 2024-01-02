@@ -60,7 +60,7 @@ function updateStabilityDepositByOperation(
     stabilityDepositChange.depositedAmountBefore
   );
 
-  if (collateralGain != null) {
+  if (collateralGain !== null) {
     stabilityDepositChange.collateralGain = collateralGain;
   }
 

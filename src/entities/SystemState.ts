@@ -31,7 +31,11 @@ import { beginChange, initChange, finishChange } from "./Change";
 
 export function getCurrentSystemState(): SystemState {
   let currentSystemStateId = getGlobal().currentSystemState;
-  let currentSystemStateOrNull = SystemState.load(currentSystemStateId);
+  let stateId = "";
+  if (currentSystemStateId !== null) {
+    stateId = currentSystemStateId;
+  }
+  let currentSystemStateOrNull = SystemState.load(stateId);
 
   if (currentSystemStateOrNull == null) {
     let sequenceNumber = getSystemStateSequenceNumber();
@@ -97,7 +101,7 @@ export function updatePrice(event: ethereum.Event, _lastGoodPrice: BigInt): void
   let oldPriceOrNull = systemState.price;
   let newPrice = decimalize(_lastGoodPrice);
 
-  if (oldPriceOrNull == null) {
+  if (oldPriceOrNull === null) {
     // On first price event, just initialize price in the current system state without creating
     // a price change.
     systemState.price = newPrice;
@@ -105,7 +109,7 @@ export function updatePrice(event: ethereum.Event, _lastGoodPrice: BigInt): void
     return;
   }
 
-  let oldPrice = oldPriceOrNull!;
+  let oldPrice = oldPriceOrNull;
 
   if (newPrice != oldPrice) {
     let priceChange = createPriceChange(event);
