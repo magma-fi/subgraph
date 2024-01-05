@@ -19,6 +19,7 @@ export function getGlobal(): Global {
     newGlobal.changeCount = 0;
     newGlobal.liquidationCount = 0;
     newGlobal.redemptionCount = 0;
+    newGlobal.frontEndCount = 0;
     newGlobal.numberOfOpenTroves = 0;
     newGlobal.numberOfLiquidatedTroves = 0;
     newGlobal.numberOfRedeemedTroves = 0;
@@ -73,6 +74,10 @@ export function getLiquidationSequenceNumber(): i32 {
 
 export function getRedemptionSequenceNumber(): i32 {
   return increaseCounter("redemptionCount");
+}
+
+export function getFrontEndSequenceNumber(): i32 {
+  return increaseCounter("frontEndCount");
 }
 
 export function updateTotalRedistributed(L_ETH: BigInt, L_LUSDDebt: BigInt): void {

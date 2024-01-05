@@ -7,6 +7,7 @@ type Global @entity {
   changeCount: Int!
   liquidationCount: Int!
   redemptionCount: Int!
+  frontEndCount: Int!
 
   numberOfOpenTroves: Int!
   numberOfLiquidatedTroves: Int!
@@ -38,6 +39,7 @@ type Global @entity {
 
   "Only used internally as temporary storage. Will always be null in queries"
   tmpDepositUpdate: BigInt
+
 }
 
 type SystemState @entity {
@@ -328,6 +330,8 @@ type TokenAllowance @entity {
 type Frontend @entity {
   id: ID!
   owner: User!
+  sequenceNumber: Int!
+  code: String!
   kickbackRate: BigDecimal!
   deposits: [StabilityDeposit!]! @derivedFrom(field: "frontend")
 }

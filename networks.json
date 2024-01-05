@@ -27,28 +27,28 @@
     },
     "iotex-testnet": {
         "TroveManager": {
-            "address": "0x0571B9C4ee4887e7d84E55a2dD92E97872437f74",
-            "startBlock": 23406026
+            "address": "0x6d47e21D3899d1f361F90F3176CC9E5B04B3FA3E",
+            "startBlock": 24105045
         },
         "BorrowerOperations": {
-            "address": "0xB356333cB452712eec5dC42b877d9E84Ff7227Ec",
-            "startBlock": 23406047
+            "address": "0x037a2e9a464fbA409D0E55600836864B410d6Dd8",
+            "startBlock": 24105063
         },
         "PriceFeed": {
             "address": "0x745a12D9BcDBFfb092fc38C1A24531dbb0846ad8",
             "startBlock": 23406020
         },
         "StabilityPool": {
-            "address": "0x9eb189Be49a8a9e7b83e0A67a6207b08F58Ca228",
-            "startBlock": 23406034
+            "address": "0x21d81DABF6985587CE64C2E8EB12F69DF2178fe2",
+            "startBlock": 24105052
         },
         "CollSurplusPool": {
-            "address": "0x132d8eEAc82b7b5A650A04ce996833d2c76272F8",
-            "startBlock": 23406041
+            "address": "0x0B926bAafE0EbCc7843ef4752d9d843b5D4E39cF",
+            "startBlock": 24105057
         },
         "LUSDToken": {
-            "address": "0xcb9177F585314B7e60A2Cd54AD0aA0d87b4817Be",
-            "startBlock": 23406051
+            "address": "0x6A2338A8b1546621ED369DF7F7Fd8d6dA84c5657",
+            "startBlock": 24105067
         }
     }
 }
