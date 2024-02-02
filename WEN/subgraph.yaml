@@ -10,8 +10,8 @@ dataSources:
     network: iotex
     source:
       abi: TroveManager
-      address: "0xAeB0B38040aDdc4a2b520919f13944D9bC944435"
-      startBlock: 27335639
+      address: "0x21d81DABF6985587CE64C2E8EB12F69DF2178fe2"
+      startBlock: 27805262
     mapping:
       file: ./src/mappings/TroveManager.ts
       language: wasm/assemblyscript
@@ -45,8 +45,8 @@ dataSources:
     network: iotex
     source:
       abi: BorrowerOperations
-      address: "0x51729FC7f777b29ffCd40fD4ccC699BC2e023826"
-      startBlock: 27335659
+      address: "0x4C579289b99a8b1741745BD557c754B30b0B81fa"
+      startBlock: 27805302
     mapping:
       file: ./src/mappings/BorrowerOperations.ts
       language: wasm/assemblyscript
@@ -72,8 +72,8 @@ dataSources:
     network: iotex
     source:
       abi: PriceFeed
-      address: "0xCfE22Ea152e364Fa4261D1F9bECe83171397718d"
-      startBlock: 27232730
+      address: "0x1Ec94b48F3756F0D6240Bc7820EA4B5D7855D00A"
+      startBlock: 27800892
     mapping:
       file: ./src/mappings/PriceFeed.ts
       language: wasm/assemblyscript
@@ -95,8 +95,8 @@ dataSources:
     network: iotex
     source:
       abi: StabilityPool
-      address: "0x109e342FE7132585abFa785887E2c05c85Fbcf71"
-      startBlock: 27335647
+      address: "0x037a2e9a464fbA409D0E55600836864B410d6Dd8"
+      startBlock: 27805276
     mapping:
       file: ./src/mappings/StabilityPool.ts
       language: wasm/assemblyscript
@@ -127,8 +127,8 @@ dataSources:
     network: iotex
     source:
       abi: CollSurplusPool
-      address: "0x6AdD3E2edA80bc5070052feEb651973cb44fa7B2"
-      startBlock: 27335653
+      address: "0xF00Bc206644BAe3d73D55e36AC2A86B62B457deB"
+      startBlock: 27805294
     mapping:
       file: ./src/mappings/CollSurplusPool.ts
       language: wasm/assemblyscript
@@ -152,8 +152,8 @@ dataSources:
     network: iotex
     source:
       abi: ERC20
-      address: "0x20143C45c2Ce7984799079F256d8a68A918EeEe6"
-      startBlock: 27390790
+      address: "0x6C0bf4b53696b5434A0D21C7D13Aa3cbF754913E"
+      startBlock: 27805311
     mapping:
       file: ./src/mappings/Token.ts
       language: wasm/assemblyscript
