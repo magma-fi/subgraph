@@ -1,4 +1,4 @@
-import { Transfer } from "../generated/WENToken/ERC20";
+import { Transfer } from "../generated/LPToken/ERC20";
 
 import { updateBalance } from "./entities/TokenBalance";
 import { updatePoint } from "./entities/Point";

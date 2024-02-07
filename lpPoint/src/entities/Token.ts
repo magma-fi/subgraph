@@ -1,7 +1,7 @@
 import { Address } from "@graphprotocol/graph-ts";
 
 import { Token } from "../../generated/schema";
-import { ERC20 } from "../../generated/WENToken/ERC20";
+import { ERC20 } from "../../generated/LPToken/ERC20";
 import { BIGINT_ZERO } from "../utils/bignumbers";
 
 function createToken(address: Address, name: string, symbol: string): Token {
