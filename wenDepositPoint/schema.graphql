@@ -1,0 +1,28 @@
+
+type User @entity {
+  "There should be only one System entity with an ID of 'only'"
+  id: ID!
+
+  stabilityDeposit: StabilityDeposit! @derivedFrom(field: "owner")
+  point: Point! @derivedFrom(field: "owner")
+}
+
+type Point @entity {
+  "There should be only one System entity with an ID of 'only'"
+  id: ID!
+
+  owner: User!
+  point: BigDecimal!
+  timestamp: Int!
+}
+
+type StabilityDeposit @entity {
+  "Owner's ID + '-' + an incremented integer"
+  id: ID!
+
+  owner: User!
+
+  depositedAmount: BigDecimal!
+}
+
+

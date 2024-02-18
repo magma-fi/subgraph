@@ -1,0 +1,30 @@
+specVersion: 0.0.4
+description: Magma is a decentralized borrowing protocol offering interest-free
+  liquidity against collateral in Ether.
+repository: https://github.com/magma-fi/subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - name: StabilityPool
+    kind: ethereum/contract
+    network: iotex
+    source:
+      abi: StabilityPool
+      address: "0x037a2e9a464fbA409D0E55600836864B410d6Dd8"
+      startBlock: 27805276
+    mapping:
+      file: ./src/Deposit.ts
+      language: wasm/assemblyscript
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      entities:
+        - Point
+        - User
+        - Token
+        - StabilityDeposit
+      abis:
+        - name: StabilityPool
+          file: ./abi/StabilityPool.json
+      eventHandlers:
+        - event: UserDepositChanged(indexed address,uint256)
+          handler: handleStakeChanged
