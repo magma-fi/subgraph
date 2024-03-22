@@ -1,0 +1,43 @@
+
+type User @entity {
+  "There should be only one System entity with an ID of 'only'"
+  id: ID!
+
+  balance: TokenBalance! @derivedFrom(field: "owner")
+  staking: Staking! @derivedFrom(field: "owner")
+  point: Point! @derivedFrom(field: "owner")
+}
+
+type Point @entity {
+  "There should be only one System entity with an ID of 'only'"
+  id: ID!
+
+  owner: User!
+  point: BigDecimal!
+  timestamp: Int!
+}
+
+type Token @entity {
+  "the token address"
+  id: ID!
+  name: String!
+  symbol: String!
+  totalSupply: BigInt!
+  balances: [TokenBalance!] @derivedFrom(field: "token")
+}
+
+type TokenBalance @entity {
+  "tokenAddress-userAddress"
+  id: ID!
+  token: Token!
+  owner: User!
+  balance: BigInt!
+}
+
+type Staking @entity {
+  "staking-userAddress"
+  id: ID!
+  owner: User!
+
+  amount: BigInt!
+}
