@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const lpconfig = process.argv[2] || "WEN-GEODLP";
-const { SmartChefInitializable, LPToken, startBlock, lpstartBlock } = require(`./config/${lpconfig}.json`);
+const { SmartChefInitializable, LPToken, startBlock, lpstartBlock, endBlock } = require(`./config/${lpconfig}.json`);
 
 console.log(`Preparing subgraph manifest for "${lpconfig}"`);
 
@@ -12,7 +12,7 @@ const yaml = (strings, ...keys) =>
     .substring(1); // Skip initial newline
 
 const manifest = yaml`
-specVersion: 0.0.4
+specVersion: 0.0.9
 description: Magma is a decentralized borrowing protocol offering interest-free
   liquidity against collateral in Ether.
 repository: https://github.com/magma-fi/subgraph
@@ -26,6 +26,7 @@ dataSources:
       abi: SmartChefInitializable
       address: "${SmartChefInitializable}"
       startBlock: ${startBlock}
+      endBlock: ${endBlock}
     mapping:
       file: ./src/SmartChef.ts
       language: wasm/assemblyscript
@@ -54,6 +55,7 @@ dataSources:
       abi: ERC20
       address: "${LPToken}"
       startBlock: ${lpstartBlock}
+      endBlock: ${endBlock}
     mapping:
       file: ./src/Token.ts
       kind: ethereum/events

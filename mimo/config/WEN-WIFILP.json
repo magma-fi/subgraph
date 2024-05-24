@@ -3,5 +3,6 @@
     "startBlock": 28535500,
     "LPToken": "0x9494eE768D605A4c224A987615Bf5119D73e6ec0",
     "lpstartBlock": 28279300,
-    "pointPerHour": 8
+    "pointPerHour": 8,
+    "endBlock": 29633666
 }

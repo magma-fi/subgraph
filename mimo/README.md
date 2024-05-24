@@ -37,6 +37,6 @@ Open Graph Node graphql API instance in your browser: `http://127.0.0.1:8000/sub
 # Deployed subgraph
 | LP      | subgraph name | subgraph id |
 | ----------- | ----------- | ----------- |
-| WEN-GEODLP  | mimo-WEN-GEODLP-staking-iotex | Qmb97DonHEAJBAH54cV2M5SMMKRyt8panyfSzJ9hwYiXYy |
-| WEN-XNETLP  | mimo-WEN-XNETLP-staking-iotex | QmcZFZ38WcDAKCHLCBDxbnacw8ie7T842jAQVTZ46xi19P |
-| WEN-WIFILP  | mimo-WEN-WIFILP-staking-iotex | QmZqsdV5gGLv7EFz3VgGFdMSmcd8Y6BUvfSiU5SUNsgF5V |
+| WEN-GEODLP  | mimo-WEN-GEODLP-staking-iotex | QmTga7xqVvwpPQySq5L2AH8FHNpYciZuQLKoMxsk4DXbQ9 |
+| WEN-XNETLP  | mimo-WEN-XNETLP-staking-iotex | QmdEqCvgANQP9nGsNPHCUK22ovyUbkyWLt1rTpLhiYLJzZ |
+| WEN-WIFILP  | mimo-WEN-WIFILP-staking-iotex | QmeLpY4p6Nt8eWrEqAxS7FWmpBnwKst7pKzKo9tBURz9yv |
