@@ -1,3 +1,35 @@
+const fs = require("fs");
+
+const lpconfig = process.argv[2] || "iotex_native";
+const {
+  network,
+  collType,
+  TroveManager,
+  TroveManagerStartBlock,
+  BorrowerOperations,
+  BorrowerOperationsStartBlock,
+  PriceFeed,
+  PriceFeedStartBlock,
+  StabilityPool,
+  StabilityPoolStartBlock,
+  CollSurplusPool,
+  CollSurplusPoolStartBlock,
+  LUSDToken,
+  LUSDTokenStartBlock,
+  PriceFeedTS,
+  PriceFeedABI,
+  PriceUpdateEvent
+} = require(`./config/${lpconfig}.json`);
+
+console.log(`Preparing subgraph manifest for "${lpconfig}"`);
+
+const yaml = (strings, ...keys) =>
+  strings
+    .flatMap((string, i) => [string, Array.isArray(keys[i]) ? keys[i].join("") : keys[i]])
+    .join("")
+    .substring(1); // Skip initial newline
+
+const manifest = yaml`
 specVersion: 0.0.4
 description: Magma is a decentralized borrowing protocol offering interest-free
   liquidity against collateral in Ether and ERC20 tokens.
@@ -7,11 +39,11 @@ schema:
 dataSources:
   - name: TroveManager
     kind: ethereum/contract
-    network: iotex
+    network: ${network}
     source:
       abi: TroveManager
-      address: "0xC130660647039b0938EF0b050aBC7FA530220008"
-      startBlock: 32888430
+      address: "${TroveManager}"
+      startBlock: ${TroveManagerStartBlock}
     mapping:
       file: ./src/mappings/TroveManager.ts
       language: wasm/assemblyscript
@@ -45,11 +77,11 @@ dataSources:
           handler: handleSetAddresses
   - name: BorrowerOperations
     kind: ethereum/contract
-    network: iotex
+    network: ${network}
     source:
       abi: BorrowerOperations
-      address: "0xF6C604ea28C5324fF573ebEd3FaB02bffe54A15a"
-      startBlock: 32888399
+      address: "${BorrowerOperations}"
+      startBlock: ${BorrowerOperationsStartBlock}
     mapping:
       file: ./src/mappings/BorrowerOperations.ts
       language: wasm/assemblyscript
@@ -72,13 +104,13 @@ dataSources:
           handler: handleLUSDBorrowingFeePaid
   - name: PriceFeed
     kind: ethereum/contract
-    network: iotex
+    network: ${network}
     source:
       abi: PriceFeed
-      address: "0xdE4b92610BE18EEd8d86F709Fab66D156259643A"
-      startBlock: 32888367
+      address: "${PriceFeed}"
+      startBlock: ${PriceFeedStartBlock}
     mapping:
-      file: ./src/mappings/collTokenPriceFeed.ts
+      file: ./src/mappings/${PriceFeedTS}
       language: wasm/assemblyscript
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -89,17 +121,17 @@ dataSources:
         - SystemState
       abis:
         - name: PriceFeed
-          file: ./abi/collTokenPriceFeed.json
+          file: ./abi/${PriceFeedABI}
       eventHandlers:
-        - event: LastGoodPriceUpdated(address,uint256)
+        - event: ${PriceUpdateEvent}
           handler: handleLastGoodPriceUpdated
   - name: StabilityPool
     kind: ethereum/contract
-    network: iotex
+    network: ${network}
     source:
       abi: StabilityPool
-      address: "0x40Ab64341aBcD2738FDCF3B79F88e8a58De9e237"
-      startBlock: 32888426
+      address: "${StabilityPool}"
+      startBlock: ${StabilityPoolStartBlock}
     mapping:
       file: ./src/mappings/StabilityPool.ts
       language: wasm/assemblyscript
@@ -127,11 +159,11 @@ dataSources:
           handler: handleFrontendTagSet
   - name: CollSurplusPool
     kind: ethereum/contract
-    network: iotex
+    network: ${network}
     source:
       abi: CollSurplusPool
-      address: "0x3Cd5e15395E809C656b8A61e1E05eC13d6A9Ac30"
-      startBlock: 32888412
+      address: "${CollSurplusPool}"
+      startBlock: ${CollSurplusPoolStartBlock}
     mapping:
       file: ./src/mappings/CollSurplusPool.ts
       language: wasm/assemblyscript
@@ -152,11 +184,11 @@ dataSources:
           handler: handleCollSurplusBalanceUpdated
   - name: LUSDToken
     kind: ethereum/contract
-    network: iotex
+    network: ${network}
     source:
       abi: ERC20
-      address: "0x385E61991101d90e64BbDcf1041a15713DA44c52"
-      startBlock: 32888404
+      address: "${LUSDToken}"
+      startBlock: ${LUSDTokenStartBlock}
     mapping:
       file: ./src/mappings/Token.ts
       language: wasm/assemblyscript
@@ -176,3 +208,5 @@ dataSources:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleTokenApproval
 
+`
+fs.writeFileSync("subgraph.yaml", manifest);

@@ -163,7 +163,7 @@ export function updateSystemStateByTroveChange(troveChange: TroveChange): void {
 
     systemState.totalCollateral = systemState.totalCollateral.minus(collateralGasCompensation);
 
-    if (!isRecoveryModeLiquidation(operation) || troveChange.collateralRatioBefore > DECIMAL_ONE) {
+    if (!isRecoveryModeLiquidation(operation) || troveChange.collateralRatioBefore! > DECIMAL_ONE) {
       tryToOffsetWithTokensFromStabilityPool(
         systemState,
         collateral.minus(collateralGasCompensation),

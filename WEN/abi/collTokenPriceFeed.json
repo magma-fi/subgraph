@@ -1,15 +1,20 @@
 [
   {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
     "anonymous": false,
     "inputs": [
       {
         "indexed": false,
-        "internalType": "address",
-        "name": "_newActivePoolAddress",
-        "type": "address"
+        "internalType": "uint8",
+        "name": "version",
+        "type": "uint8"
       }
     ],
-    "name": "ActivePoolAddressChanged",
+    "name": "Initialized",
     "type": "event"
   },
   {
@@ -18,62 +23,17 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "_newBorrowerOperationsAddress",
-        "type": "address"
-      }
-    ],
-    "name": "BorrowerOperationsAddressChanged",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "_account",
+        "name": "_collToken",
         "type": "address"
       },
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "_newBalance",
+        "name": "_lastGoodPrice",
         "type": "uint256"
       }
     ],
-    "name": "CollBalanceUpdated",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_ETH",
-        "type": "uint256"
-      }
-    ],
-    "name": "CollSurplusPoolETHBalanceUpdated",
-    "type": "event"
-  },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": false,
-        "internalType": "address",
-        "name": "_to",
-        "type": "address"
-      },
-      {
-        "indexed": false,
-        "internalType": "uint256",
-        "name": "_amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "EtherSent",
+    "name": "LastGoodPriceUpdated",
     "type": "event"
   },
   {
@@ -120,12 +80,44 @@
       {
         "indexed": false,
         "internalType": "address",
-        "name": "_newTroveManagerAddress",
+        "name": "_collToken",
         "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum CollTokenPriceFeed.Status",
+        "name": "newStatus",
+        "type": "uint8"
       }
     ],
-    "name": "TroveManagerAddressChanged",
+    "name": "PriceFeedStatusChanged",
     "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "DECIMAL_PRECISION",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "MAX_PRICE_DEVIATION_FROM_PREVIOUS_ROUND",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   },
   {
     "inputs": [],
@@ -155,6 +147,32 @@
   },
   {
     "inputs": [],
+    "name": "TARGET_DIGITS",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "TIMEOUT",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "acceptOwnership",
     "outputs": [],
     "stateMutability": "nonpayable",
@@ -164,41 +182,26 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_account",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "collTokenPriceFeed",
+    "outputs": [
+      {
+        "internalType": "contract AggregatorV3Interface",
+        "name": "priceAggregator",
         "type": "address"
       },
       {
         "internalType": "uint256",
-        "name": "_amount",
+        "name": "lastGoodPrice",
         "type": "uint256"
-      }
-    ],
-    "name": "accountSurplus",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "activePoolAddress",
-    "outputs": [
+      },
       {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "borrowerOperationsAddress",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
+        "internalType": "enum CollTokenPriceFeed.Status",
+        "name": "status",
+        "type": "uint8"
       }
     ],
     "stateMutability": "view",
@@ -208,45 +211,26 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_account",
+        "name": "_collToken",
         "type": "address"
       }
     ],
-    "name": "claimColl",
-    "outputs": [],
+    "name": "fetchPrice",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_account",
-        "type": "address"
-      }
-    ],
-    "name": "getCollateral",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
     "inputs": [],
-    "name": "getETH",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
+    "name": "initialize",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -289,31 +273,19 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "renounceOwnership",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
     "inputs": [
       {
         "internalType": "address",
-        "name": "_borrowerOperationsAddress",
+        "name": "_collToken",
         "type": "address"
       },
       {
         "internalType": "address",
-        "name": "_troveManagerAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_activePoolAddress",
+        "name": "_priceAggregatorAddress",
         "type": "address"
       }
     ],
-    "name": "setAddresses",
+    "name": "setCollTokenPriceFeed",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -330,22 +302,5 @@
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "troveManagerAddress",
-    "outputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "stateMutability": "payable",
-    "type": "receive"
   }
 ]

@@ -3,7 +3,8 @@ import {
   TroveLiquidated,
   Liquidation,
   Redemption,
-  LTermsUpdated
+  LTermsUpdated,
+  SetAddressesCall
 } from "../../generated/TroveManager/TroveManager";
 
 import { getTroveOperationFromTroveManagerOperation } from "../types/TroveOperation";
@@ -11,7 +12,7 @@ import { getTroveOperationFromTroveManagerOperation } from "../types/TroveOperat
 import { finishCurrentLiquidation } from "../entities/Liquidation";
 import { finishCurrentRedemption } from "../entities/Redemption";
 import { applyRedistributionToTroveBeforeLiquidation, updateTrove } from "../entities/Trove";
-import { updateTotalRedistributed } from "../entities/Global";
+import { updateTotalRedistributed, updateTroveInfo } from "../entities/Global";
 
 export function handleTroveUpdated(event: TroveUpdated): void {
   updateTrove(
@@ -52,4 +53,8 @@ export function handleRedemption(event: Redemption): void {
 
 export function handleLTermsUpdated(event: LTermsUpdated): void {
   updateTotalRedistributed(event.params._L_ETH, event.params._L_LUSDDebt);
+}
+
+export function handleSetAddresses(call: SetAddressesCall): void {
+  updateTroveInfo(call.to, call.inputs._collToken);
 }

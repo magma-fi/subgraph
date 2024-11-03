@@ -6,9 +6,11 @@ import {
 import { getTroveOperationFromBorrowerOperation } from "../types/TroveOperation";
 
 import { setBorrowingFeeOfLastTroveChange, updateTrove } from "../entities/Trove";
-import { increaseTotalBorrowingFeesPaid } from "../entities/Global";
+import { increaseTotalBorrowingFeesPaid, getTroveManager } from "../entities/Global";
 
 export function handleTroveUpdated(event: TroveUpdated): void {
+  if (event.params._trove != getTroveManager()) return;
+
   updateTrove(
     event,
     getTroveOperationFromBorrowerOperation(event.params.operation),

@@ -1,8 +1,9 @@
-import { Value, BigInt } from "@graphprotocol/graph-ts";
+import { Address, Value, BigInt } from "@graphprotocol/graph-ts";
 
 import { Global } from "../../generated/schema";
 
 import { BIGINT_ZERO, DECIMAL_ZERO, decimalize } from "../utils/bignumbers";
+import { ZERO_ADDRESS } from "../utils/constants";
 
 const onlyGlobalId = "only";
 
@@ -31,6 +32,8 @@ export function getGlobal(): Global {
     newGlobal.numberOfActiveLQTYStakes = 0;
     newGlobal.totalBorrowingFeesPaid = DECIMAL_ZERO;
     newGlobal.totalRedemptionFeesPaid = DECIMAL_ZERO;
+    newGlobal.troveManager = ZERO_ADDRESS;
+    newGlobal.collToken = ZERO_ADDRESS;
 
     return newGlobal;
   }
@@ -171,3 +174,21 @@ export function increaseTotalBorrowingFeesPaid(_LUSDFee: BigInt): void {
   global.totalBorrowingFeesPaid = global.totalBorrowingFeesPaid.plus(decimalize(_LUSDFee));
   global.save();
 }
+
+export function updateTroveInfo(_troveManager: Address, _collToken: Address): void {
+  let global = getGlobal();
+  global.troveManager = _troveManager.toHexString();
+  global.collToken = _collToken.toHexString();
+  global.save();
+}
+
+export function getTroveManager(): Address {
+  let global = getGlobal();
+  return Address.fromString(global.troveManager);
+}
+
+export function getCollToken(): Address {
+  let global = getGlobal();
+  return Address.fromString(global.collToken);
+}
+

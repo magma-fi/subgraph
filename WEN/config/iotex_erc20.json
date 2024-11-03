@@ -1,0 +1,18 @@
+{
+    "network": "iotex",
+    "TroveManager": "0xC130660647039b0938EF0b050aBC7FA530220008",
+    "TroveManagerStartBlock": 32888430,
+    "BorrowerOperations": "0xF6C604ea28C5324fF573ebEd3FaB02bffe54A15a",
+    "BorrowerOperationsStartBlock": 32888399,
+    "PriceFeed": "0xdE4b92610BE18EEd8d86F709Fab66D156259643A",
+    "PriceFeedStartBlock": 32888367,
+    "StabilityPool": "0x40Ab64341aBcD2738FDCF3B79F88e8a58De9e237",
+    "StabilityPoolStartBlock": 32888426,
+    "CollSurplusPool": "0x3Cd5e15395E809C656b8A61e1E05eC13d6A9Ac30",
+    "CollSurplusPoolStartBlock": 32888412,
+    "LUSDToken": "0x385E61991101d90e64BbDcf1041a15713DA44c52",
+    "LUSDTokenStartBlock": 32888404,
+    "PriceFeedTS": "collTokenPriceFeed.ts",
+    "PriceFeedABI": "collTokenPriceFeed.json",
+    "PriceUpdateEvent": "LastGoodPriceUpdated(address,uint256)"
+}

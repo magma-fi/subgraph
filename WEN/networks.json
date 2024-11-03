@@ -50,5 +50,31 @@
             "address": "0x659dd68Ad9CCDA1fC4Dda42BdCe56642356eaf44",
             "startBlock": 24140644
         }
+    },
+    "bitlayer": {
+        "TroveManager": {
+            "address": "0xe492C59B5A26971F347d8968118F6f4aEAb0AaaC",
+            "startBlock": 989872
+        },
+        "BorrowerOperations": {
+            "address": "0x120b68eBE21612635e6180802160f039eA0D811B",
+            "startBlock": 989896
+        },
+        "PriceFeed": {
+            "address": "0x0E2b448AB9Bab5fBCD9F8679aF1e8cA7D01F1651",
+            "startBlock": 989866
+        },
+        "StabilityPool": {
+            "address": "0x3dB2f57a8505Cf1fed824B02885e7D14f3cf3D16",
+            "startBlock": 989881
+        },
+        "CollSurplusPool": {
+            "address": "0x1d31E811F73F343d5747C7C14b7948aB0ef78D7d",
+            "startBlock": 989891
+        },
+        "LUSDToken": {
+            "address": "0x8D5B0011429864BfbcCABb501081CB03F834421F",
+            "startBlock": 989902
+        }
     }
 }

@@ -40,6 +40,8 @@ type Global @entity {
   "Only used internally as temporary storage. Will always be null in queries"
   tmpDepositUpdate: BigInt
 
+  troveManager: String!
+  collToken: String!
 }
 
 type SystemState @entity {
