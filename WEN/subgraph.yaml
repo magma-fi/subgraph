@@ -10,13 +10,13 @@ dataSources:
     network: iotex
     source:
       abi: TroveManager
-      address: "0xC130660647039b0938EF0b050aBC7FA530220008"
-      startBlock: 32888430
+      address: "0xFF5F4bA96586EDae7E7D838D8770dFB3376Ec245"
+      startBlock: 33002942
     mapping:
       file: ./src/mappings/TroveManager.ts
       language: wasm/assemblyscript
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       entities:
         - Global
         - User
@@ -40,21 +40,20 @@ dataSources:
           handler: handleRedemption
         - event: LTermsUpdated(uint256,uint256)
           handler: handleLTermsUpdated
-      callHandlers:
-        - function: setAddresses(address,address,address,address,address,address,address,address,address,address,address)
+        - event: BorrowerOperationsAddressChanged(address)
           handler: handleSetAddresses
   - name: BorrowerOperations
     kind: ethereum/contract
     network: iotex
     source:
       abi: BorrowerOperations
-      address: "0xF6C604ea28C5324fF573ebEd3FaB02bffe54A15a"
-      startBlock: 32888399
+      address: "0x564CC0E0fF15B0414b5Db1b804f67d07C231fcE5"
+      startBlock: 33002911
     mapping:
       file: ./src/mappings/BorrowerOperations.ts
       language: wasm/assemblyscript
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       entities:
         - Global
         - User
@@ -75,13 +74,13 @@ dataSources:
     network: iotex
     source:
       abi: PriceFeed
-      address: "0xdE4b92610BE18EEd8d86F709Fab66D156259643A"
-      startBlock: 32888367
+      address: "0xeE3b9C85a225d45f2Ca40c7297E862547dDb855a"
+      startBlock: 33002877
     mapping:
       file: ./src/mappings/collTokenPriceFeed.ts
       language: wasm/assemblyscript
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       entities:
         - Global
         - Transaction
@@ -98,13 +97,13 @@ dataSources:
     network: iotex
     source:
       abi: StabilityPool
-      address: "0x40Ab64341aBcD2738FDCF3B79F88e8a58De9e237"
-      startBlock: 32888426
+      address: "0x97A842Ff661280190E18bF11d38fB7Fda539c03c"
+      startBlock: 33002937
     mapping:
       file: ./src/mappings/StabilityPool.ts
       language: wasm/assemblyscript
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       entities:
         - Global
         - User
@@ -130,13 +129,13 @@ dataSources:
     network: iotex
     source:
       abi: CollSurplusPool
-      address: "0x3Cd5e15395E809C656b8A61e1E05eC13d6A9Ac30"
-      startBlock: 32888412
+      address: "0x86adaec6660C7fbEc4D0C9256A213e3730794776"
+      startBlock: 33002925
     mapping:
       file: ./src/mappings/CollSurplusPool.ts
       language: wasm/assemblyscript
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       entities:
         - Global
         - User
@@ -155,13 +154,13 @@ dataSources:
     network: iotex
     source:
       abi: ERC20
-      address: "0x385E61991101d90e64BbDcf1041a15713DA44c52"
-      startBlock: 32888404
+      address: "0xa1A1531f6aE90192edCc32e9F38E98F303708144"
+      startBlock: 33002915
     mapping:
       file: ./src/mappings/Token.ts
       language: wasm/assemblyscript
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       entities:
         - Global
         - User

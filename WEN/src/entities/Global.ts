@@ -175,9 +175,14 @@ export function increaseTotalBorrowingFeesPaid(_LUSDFee: BigInt): void {
   global.save();
 }
 
-export function updateTroveInfo(_troveManager: Address, _collToken: Address): void {
+export function updateTroveInfo(_troveManager: Address): void {
   let global = getGlobal();
   global.troveManager = _troveManager.toHexString();
+  global.save();
+}
+
+export function updateCollToken(_collToken: Address): void {
+  let global = getGlobal();
   global.collToken = _collToken.toHexString();
   global.save();
 }

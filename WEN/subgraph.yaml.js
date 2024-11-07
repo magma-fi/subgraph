@@ -48,7 +48,7 @@ dataSources:
       file: ./src/mappings/TroveManager.ts
       language: wasm/assemblyscript
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       entities:
         - Global
         - User
@@ -72,8 +72,7 @@ dataSources:
           handler: handleRedemption
         - event: LTermsUpdated(uint256,uint256)
           handler: handleLTermsUpdated
-      callHandlers:
-        - function: setAddresses(address,address,address,address,address,address,address,address,address,address,address)
+        - event: BorrowerOperationsAddressChanged(address)
           handler: handleSetAddresses
   - name: BorrowerOperations
     kind: ethereum/contract
@@ -86,7 +85,7 @@ dataSources:
       file: ./src/mappings/BorrowerOperations.ts
       language: wasm/assemblyscript
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       entities:
         - Global
         - User
@@ -113,7 +112,7 @@ dataSources:
       file: ./src/mappings/${PriceFeedTS}
       language: wasm/assemblyscript
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       entities:
         - Global
         - Transaction
@@ -136,7 +135,7 @@ dataSources:
       file: ./src/mappings/StabilityPool.ts
       language: wasm/assemblyscript
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       entities:
         - Global
         - User
@@ -168,7 +167,7 @@ dataSources:
       file: ./src/mappings/CollSurplusPool.ts
       language: wasm/assemblyscript
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       entities:
         - Global
         - User
@@ -193,7 +192,7 @@ dataSources:
       file: ./src/mappings/Token.ts
       language: wasm/assemblyscript
       kind: ethereum/events
-      apiVersion: 0.0.6
+      apiVersion: 0.0.7
       entities:
         - Global
         - User
