@@ -1,6 +1,6 @@
 specVersion: 0.0.9
 description: Magma is a decentralized borrowing protocol offering interest-free
-  liquidity against collateral in Ether.
+  liquidity against collateral in Ether.This point subgraph is fo WEN-WIOTX LP
 repository: https://github.com/magma-fi/subgraph
 schema:
   file: ./schema.graphql
@@ -10,8 +10,8 @@ dataSources:
     network: iotex
     source:
       abi: ERC20
-      address: "0x6c0bf4b53696b5434a0d21c7d13aa3cbf754913e"
-      startBlock: 27805311
+      address: "0x641cb1214b86d0f4822d5988d5e3998b374d3554"
+      startBlock: 28590600
       endBlock: 32918240
     mapping:
       file: ./src/Token.ts
