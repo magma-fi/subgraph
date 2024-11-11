@@ -1,4 +1,4 @@
-specVersion: 0.0.4
+specVersion: 0.0.9
 description: Magma is a decentralized borrowing protocol offering interest-free
   liquidity against collateral in Ether.
 repository: https://github.com/magma-fi/subgraph
@@ -12,6 +12,7 @@ dataSources:
       abi: ERC20
       address: "0x6c0bf4b53696b5434a0d21c7d13aa3cbf754913e"
       startBlock: 27805311
+      endBlock: 32918240
     mapping:
       file: ./src/Token.ts
       language: wasm/assemblyscript
